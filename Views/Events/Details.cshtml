@@ -1,0 +1,66 @@
+@model assignment_1.Models.Event
+
+@{
+    ViewData["Title"] = "Event Details";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h2 class="mb-0">📋 Event Details</h2>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">Title</dt>
+                    <dd class="col-sm-9">
+                        <h4>@Html.DisplayFor(model => model.Title)</h4>
+                    </dd>
+
+                    <dt class="col-sm-3">Category</dt>
+                    <dd class="col-sm-9">
+                        <span class="badge bg-secondary fs-6">@Html.DisplayFor(model => model.Category.Name)</span>
+                    </dd>
+
+                    <dt class="col-sm-3">Date & Time</dt>
+                    <dd class="col-sm-9">
+                        <strong>📅 @Model.DateTime.ToString("MMMM dd, yyyy")</strong><br/>
+                        <strong>🕐 @Model.DateTime.ToString("hh:mm tt")</strong>
+                    </dd>
+
+                    <dt class="col-sm-3">Ticket Price</dt>
+                    <dd class="col-sm-9">
+                        <span class="fs-4 text-success">💵 $@Model.TicketPrice.ToString("F2")</span>
+                    </dd>
+
+                    <dt class="col-sm-3">Available Tickets</dt>
+                    <dd class="col-sm-9">
+                        @if (Model.AvailableTickets == 0)
+                        {
+                            <span class="badge bg-danger fs-6">SOLD OUT</span>
+                        }
+                        else if (Model.AvailableTickets < 5)
+                        {
+                            <span class="badge bg-warning text-dark fs-6">🎫 @Model.AvailableTickets (Limited!)</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success fs-6">🎫 @Model.AvailableTickets Available</span>
+                        }
+                    </dd>
+                </dl>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    <a asp-action="Edit" asp-route-id="@Model.EventId" class="btn btn-primary">Edit</a>
+                    @if (Model.AvailableTickets > 0)
+                    {
+                        <a asp-controller="Purchases" asp-action="Create" asp-route-eventId="@Model.EventId" class="btn btn-success">
+                            Buy Tickets
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

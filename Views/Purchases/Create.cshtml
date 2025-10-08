@@ -1,0 +1,77 @@
+@model PurchaseCreateViewModel
+
+@{
+    ViewData["Title"] = "Purchase Tickets";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h2 class="mb-0">🎫 Purchase Tickets</h2>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <h5 class="alert-heading">Event Details</h5>
+                    <hr/>
+                    <p><strong>Event:</strong> @Model.Event.Title</p>
+                    <p><strong>Category:</strong> <span class="badge bg-secondary">@Model.Event.Category.Name</span></p>
+                    <p><strong>Date:</strong> @Model.Event.DateTime.ToString("MMMM dd, yyyy - hh:mm tt")</p>
+                    <p><strong>Price per ticket:</strong> $@Model.Event.TicketPrice.ToString("F2")</p>
+                    <p class="mb-0"><strong>Available tickets:</strong> @Model.Event.AvailableTickets</p>
+                </div>
+
+                <form asp-action="Create" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="EventId"/>
+
+                    <div class="mb-3">
+                        <label asp-for="Quantity" class="form-label">Number of Tickets</label>
+                        <input asp-for="Quantity" type="number" class="form-control" min="1" max="@Model.Event.AvailableTickets"/>
+                        <span asp-validation-for="Quantity" class="text-danger"></span>
+                        <div class="form-text">Maximum: @Model.Event.AvailableTickets tickets</div>
+                    </div>
+
+                    <hr/>
+
+                    <h5>Guest Information</h5>
+
+                    <div class="mb-3">
+                        <label asp-for="GuestName" class="form-label"></label>
+                        <input asp-for="GuestName" class="form-control" placeholder="John Doe"/>
+                        <span asp-validation-for="GuestName" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="GuestEmail" class="form-label"></label>
+                        <input asp-for="GuestEmail" type="email" class="form-control" placeholder="john.doe@example.com"/>
+                        <span asp-validation-for="GuestEmail" class="text-danger"></span>
+                    </div>
+
+                    <div class="alert alert-success" id="totalCost">
+                        <strong>Estimated Total:</strong> $<span id="total">@Model.Event.TicketPrice.ToString("F2")</span>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                        <a asp-action="SelectEvent" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-success">Complete Purchase</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.getElementById('Quantity').addEventListener('input', function() {
+            var quantity = this.value || 1;
+            var price = @Model.Event.TicketPrice;
+            var total = (quantity * price).toFixed(2);
+            document.getElementById('total').textContent = total;
+        });
+    </script>
+}

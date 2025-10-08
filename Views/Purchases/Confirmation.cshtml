@@ -1,0 +1,65 @@
+@model assignment_1.Models.Purchase
+
+@{
+    ViewData["Title"] = "Purchase Confirmation";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card shadow border-success">
+            <div class="card-header bg-success text-white">
+                <h2 class="mb-0">✅ Purchase Confirmation</h2>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-success text-center">
+                    <h3 class="alert-heading">Thank you for your purchase!</h3>
+                    <p class="mb-0">Your ticket confirmation has been sent to <strong>@Model.GuestEmail</strong></p>
+                </div>
+
+                <h5 class="mt-4">Purchase Summary</h5>
+                <hr/>
+
+                <dl class="row">
+                    <dt class="col-sm-4">Confirmation Number</dt>
+                    <dd class="col-sm-8"><strong>#@Model.PurchaseId.ToString("D6")</strong></dd>
+
+                    <dt class="col-sm-4">Guest Name</dt>
+                    <dd class="col-sm-8">@Model.GuestName</dd>
+
+                    <dt class="col-sm-4">Email</dt>
+                    <dd class="col-sm-8">@Model.GuestEmail</dd>
+
+                    <dt class="col-sm-4">Purchase Date</dt>
+                    <dd class="col-sm-8">@Model.PurchaseDate.ToString("MMMM dd, yyyy - hh:mm tt")</dd>
+
+                    <dt class="col-sm-4">Total Cost</dt>
+                    <dd class="col-sm-8"><strong class="text-success">$@Model.TotalCost.ToString("F2")</strong></dd>
+                </dl>
+
+                <h5 class="mt-4">Event Details</h5>
+                <hr/>
+
+                @foreach (var item in Model.PurchaseItems)
+                {
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Event.Title</h5>
+                            <p class="card-text">
+                                <strong>Category:</strong> <span class="badge bg-secondary">@item.Event.Category.Name</span><br/>
+                                <strong>Date:</strong> @item.Event.DateTime.ToString("MMMM dd, yyyy - hh:mm tt")<br/>
+                                <strong>Quantity:</strong> @item.Quantity ticket(s)<br/>
+                                <strong>Price per ticket:</strong> $@item.PricePerTicket.ToString("F2")<br/>
+                                <strong>Subtotal:</strong> $@((item.Quantity * item.PricePerTicket).ToString("F2"))
+                            </p>
+                        </div>
+                    </div>
+                }
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Back to Home</a>
+                    <a asp-action="SelectEvent" class="btn btn-success">Purchase More Tickets</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

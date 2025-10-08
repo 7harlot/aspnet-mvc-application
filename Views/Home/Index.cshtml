@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center mb-5">
+    <h1 class="display-3 fw-bold text-primary">🎫 Welcome to Virtual Event Ticketing</h1>
+    <p class="lead fs-4 text-muted">Your gateway to amazing virtual events, webinars, concerts, and workshops</p>
+</div>
+
+<div class="row mb-5">
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm hover-shadow">
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <span class="display-1">📅</span>
+                </div>
+                <h3 class="card-title">Browse Events</h3>
+                <p class="card-text">Explore our diverse catalog of virtual events across multiple categories</p>
+                <a asp-controller="Events" asp-action="Index" class="btn btn-primary">View Events</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm hover-shadow">
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <span class="display-1">🎫</span>
+                </div>
+                <h3 class="card-title">Buy Tickets</h3>
+                <p class="card-text">Purchase tickets easily for your favorite events - no registration required!</p>
+                <a asp-controller="Purchases" asp-action="SelectEvent" class="btn btn-success">Get Tickets</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm hover-shadow">
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <span class="display-1">📊</span>
+                </div>
+                <h3 class="card-title">Event Dashboard</h3>
+                <p class="card-text">Monitor event statistics, ticket availability, and upcoming events</p>
+                <a asp-controller="Dashboard" asp-action="Index" class="btn btn-info">View Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow mb-5">
+    <div class="card-body bg-light">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="mb-4">Featured Categories</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 text-center mb-3">
+                <div class="p-3">
+                    <span class="display-4">💻</span>
+                    <h5 class="mt-2">Webinars</h5>
+                    <p class="text-muted">Educational online seminars</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center mb-3">
+                <div class="p-3">
+                    <span class="display-4">🎵</span>
+                    <h5 class="mt-2">Concerts</h5>
+                    <p class="text-muted">Live music performances</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center mb-3">
+                <div class="p-3">
+                    <span class="display-4">🛠️</span>
+                    <h5 class="mt-2">Workshops</h5>
+                    <p class="text-muted">Interactive skill-building sessions</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center mb-3">
+                <div class="p-3">
+                    <span class="display-4">🤝</span>
+                    <h5 class="mt-2">Conferences</h5>
+                    <p class="text-muted">Professional networking events</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center">
+    <h3>Ready to get started?</h3>
+    <p class="lead">Discover amazing virtual events happening now!</p>
+    <a asp-controller="Events" asp-action="Index" class="btn btn-primary btn-lg me-2">Browse All Events</a>
+    <a asp-controller="Purchases" asp-action="SelectEvent" class="btn btn-success btn-lg">Buy Tickets Now</a>
+</div>

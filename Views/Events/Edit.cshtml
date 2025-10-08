@@ -1,0 +1,64 @@
+@model assignment_1.Models.Event
+
+@{
+    ViewData["Title"] = "Edit Event";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card shadow">
+            <div class="card-header bg-warning">
+                <h2 class="mb-0">✏️ Edit Event</h2>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="EventId"/>
+
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label"></label>
+                        <input asp-for="Title" class="form-control"/>
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="CategoryId" class="form-label">Category</label>
+                        <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.CategoryId"></select>
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="DateTime" class="form-label">Date and Time</label>
+                            <input asp-for="DateTime" type="datetime-local" class="form-control"/>
+                            <span asp-validation-for="DateTime" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="TicketPrice" class="form-label">Ticket Price ($)</label>
+                            <input asp-for="TicketPrice" class="form-control"/>
+                            <span asp-validation-for="TicketPrice" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="AvailableTickets" class="form-label">Available Tickets</label>
+                        <input asp-for="AvailableTickets" class="form-control"/>
+                        <span asp-validation-for="AvailableTickets" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

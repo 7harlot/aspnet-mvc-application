@@ -1,0 +1,135 @@
+@model IEnumerable<assignment_1.Models.Event>
+
+@{
+    ViewData["Title"] = "Events";
+}
+
+<div class="row mb-4">
+    <div class="col-md-12">
+        <h1 class="display-4">📅 Events</h1>
+        <p class="lead">Browse and manage virtual events</p>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-12">
+        <a asp-action="Create" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Create New Event
+        </a>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-header bg-light">
+        <h5 class="mb-0">🔍 Search & Filter Events</h5>
+    </div>
+    <div class="card-body">
+        <form asp-action="Index" method="get">
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <label for="searchTerm" class="form-label">Search</label>
+                    <input type="text" class="form-control" id="searchTerm" name="searchTerm"
+                           value="@ViewBag.SearchTerm" placeholder="Event title...">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="categoryId" class="form-label">Category</label>
+                    <select class="form-select" id="categoryId" name="categoryId">
+                        <option value="">All Categories</option>
+                        @foreach (var item in (SelectList)ViewBag.Categories)
+                        {
+                            <option value="@item.Value" selected="@item.Selected">@item.Text</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <label for="startDate" class="form-label">From Date</label>
+                    <input type="date" class="form-control" id="startDate" name="startDate" value="@ViewBag.StartDate">
+                </div>
+
+                <div class="col-md-2">
+                    <label for="endDate" class="form-label">To Date</label>
+                    <input type="date" class="form-control" id="endDate" name="endDate" value="@ViewBag.EndDate">
+                </div>
+
+                <div class="col-md-2">
+                    <label for="availability" class="form-label">Availability</label>
+                    <select class="form-select" id="availability" name="availability">
+                        <option value="">All</option>
+                        <option value="available" selected="@(ViewBag.Availability == "available")">Available</option>
+                        <option value="soldout" selected="@(ViewBag.Availability == "soldout")">Sold Out</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="sortBy" class="form-label">Sort By</label>
+                    <select class="form-select" id="sortBy" name="sortBy">
+                        <option value="date" selected="@(ViewBag.SortBy == "date")">Date (Asc)</option>
+                        <option value="date_desc" selected="@(ViewBag.SortBy == "date_desc")">Date (Desc)</option>
+                        <option value="title" selected="@(ViewBag.SortBy == "title")">Title (A-Z)</option>
+                        <option value="title_desc" selected="@(ViewBag.SortBy == "title_desc")">Title (Z-A)</option>
+                        <option value="price" selected="@(ViewBag.SortBy == "price")">Price (Low-High)</option>
+                        <option value="price_desc" selected="@(ViewBag.SortBy == "price_desc")">Price (High-Low)</option>
+                    </select>
+                </div>
+
+                <div class="col-md-9 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary me-2">Apply Filters</button>
+                    <a asp-action="Index" class="btn btn-secondary">Clear</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header @(item.AvailableTickets == 0 ? "bg-danger text-white" : item.AvailableTickets < 5 ? "bg-warning" : "bg-primary text-white")">
+                    <h5 class="mb-0">@Html.DisplayFor(modelItem => item.Title)</h5>
+                </div>
+                <div class="card-body">
+                    <p class="mb-2">
+                        <strong>Category:</strong>
+                        <span class="badge bg-secondary">@Html.DisplayFor(modelItem => item.Category.Name)</span>
+                    </p>
+                    <p class="mb-2"><strong>📅 Date:</strong> @item.DateTime.ToString("MMM dd, yyyy - hh:mm tt")</p>
+                    <p class="mb-2"><strong>💵 Price:</strong> $@item.TicketPrice.ToString("F2")</p>
+                    <p class="mb-2">
+                        <strong>🎫 Available:</strong>
+                        @if (item.AvailableTickets == 0)
+                        {
+                            <span class="badge bg-danger">SOLD OUT</span>
+                        }
+                        else if (item.AvailableTickets < 5)
+                        {
+                            <span class="badge bg-warning text-dark">@item.AvailableTickets (Limited!)</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">@item.AvailableTickets</span>
+                        }
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <div class="btn-group w-100" role="group">
+                        <a asp-action="Details" asp-route-id="@item.EventId" class="btn btn-sm btn-info">Details</a>
+                        <a asp-action="Edit" asp-route-id="@item.EventId" class="btn btn-sm btn-primary">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.EventId" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info text-center">
+        <h4>No events found</h4>
+        <p>Try adjusting your filters or <a asp-action="Create">create a new event</a>.</p>
+    </div>
+}

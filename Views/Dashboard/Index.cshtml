@@ -1,0 +1,168 @@
+@model DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="row mb-4">
+    <div class="col-md-12">
+        <h1 class="display-4">📊 Event Dashboard</h1>
+        <p class="lead">Overview of your virtual event ticketing system</p>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card text-white bg-primary shadow">
+            <div class="card-body">
+                <h5 class="card-title">Total Events</h5>
+                <p class="display-4">@Model.TotalEvents</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card text-white bg-success shadow">
+            <div class="card-body">
+                <h5 class="card-title">Total Categories</h5>
+                <p class="display-4">@Model.TotalCategories</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.LowTicketEvents.Any())
+{
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card shadow border-warning">
+                <div class="card-header bg-warning">
+                    <h4 class="mb-0">⚠️ Low Ticket Availability (Less than 5 tickets)</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Event</th>
+                                    <th>Category</th>
+                                    <th>Date</th>
+                                    <th>Available Tickets</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var evt in Model.LowTicketEvents)
+                                {
+                                    <tr>
+                                        <td>@evt.Title</td>
+                                        <td><span class="badge bg-secondary">@evt.Category.Name</span></td>
+                                        <td>@evt.DateTime.ToString("MMM dd, yyyy")</td>
+                                        <td><span class="badge bg-warning text-dark">@evt.AvailableTickets</span></td>
+                                        <td>
+                                            <a asp-controller="Events" asp-action="Edit" asp-route-id="@evt.EventId" class="btn btn-sm btn-primary">Edit</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.SoldOutEvents.Any())
+{
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card shadow border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">🚫 Sold Out Events</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Event</th>
+                                    <th>Category</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var evt in Model.SoldOutEvents)
+                                {
+                                    <tr>
+                                        <td>@evt.Title</td>
+                                        <td><span class="badge bg-secondary">@evt.Category.Name</span></td>
+                                        <td>@evt.DateTime.ToString("MMM dd, yyyy")</td>
+                                        <td><span class="badge bg-danger">SOLD OUT</span></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0">📅 Upcoming Events</h4>
+            </div>
+            <div class="card-body">
+                @if (Model.UpcomingEvents.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Event</th>
+                                    <th>Category</th>
+                                    <th>Date</th>
+                                    <th>Price</th>
+                                    <th>Available</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var evt in Model.UpcomingEvents)
+                                {
+                                    <tr>
+                                        <td>@evt.Title</td>
+                                        <td><span class="badge bg-secondary">@evt.Category.Name</span></td>
+                                        <td>@evt.DateTime.ToString("MMM dd, yyyy - hh:mm tt")</td>
+                                        <td>$@evt.TicketPrice.ToString("F2")</td>
+                                        <td><span class="badge bg-success">@evt.AvailableTickets</span></td>
+                                        <td>
+                                            <a asp-controller="Events" asp-action="Details" asp-route-id="@evt.EventId" class="btn btn-sm btn-info">View</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted text-center">No upcoming events scheduled.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <a asp-controller="Events" asp-action="Index" class="btn btn-primary btn-lg">View All Events</a>
+            <a asp-controller="Events" asp-action="Create" class="btn btn-success btn-lg">Create New Event</a>
+        </div>
+    </div>
+</div>
