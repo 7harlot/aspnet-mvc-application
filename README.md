@@ -6,7 +6,7 @@ A comprehensive virtual event ticketing system built with ASP.NET Core MVC, enab
 
 ## Features Implemented
 
-### ✅ Core Requirements
+### Core Requirements
 
 1. **Event Management**
    - Create, Read, Update, Delete (CRUD) operations for events
