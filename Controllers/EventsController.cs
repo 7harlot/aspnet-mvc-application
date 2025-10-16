@@ -26,10 +26,11 @@ public class EventsController : Controller
             eventsQuery = eventsQuery.Where(e => e.CategoryId == categoryId.Value);
         }
 
-        // Search by title or date
+        // Search by title or date (case-insensitive)
         if (!string.IsNullOrWhiteSpace(searchTerm))
         {
-            eventsQuery = eventsQuery.Where(e => e.Title.Contains(searchTerm) || e.DateTime.ToString().Contains(searchTerm));
+            searchTerm = searchTerm.ToLower();
+            eventsQuery = eventsQuery.Where(e => e.Title.ToLower().Contains(searchTerm) || e.DateTime.ToString().ToLower().Contains(searchTerm));
         }
 
         // Filter by date range
@@ -111,8 +112,21 @@ public class EventsController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("EventId,Title,DateTime,TicketPrice,AvailableTickets,CategoryId")] Event eventItem)
     {
+        // Remove the Category navigation property from ModelState to prevent validation errors
+        ModelState.Remove("Category");
+
         if (ModelState.IsValid)
         {
+            // Convert DateTime to UTC for PostgreSQL
+            if (eventItem.DateTime.Kind == DateTimeKind.Unspecified)
+            {
+                eventItem.DateTime = DateTime.SpecifyKind(eventItem.DateTime, DateTimeKind.Utc);
+            }
+            else if (eventItem.DateTime.Kind == DateTimeKind.Local)
+            {
+                eventItem.DateTime = eventItem.DateTime.ToUniversalTime();
+            }
+
             _context.Add(eventItem);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -148,10 +162,23 @@ public class EventsController : Controller
             return NotFound();
         }
 
+        // Remove the Category navigation property from ModelState to prevent validation errors
+        ModelState.Remove("Category");
+
         if (ModelState.IsValid)
         {
             try
             {
+                // Convert DateTime to UTC for PostgreSQL
+                if (eventItem.DateTime.Kind == DateTimeKind.Unspecified)
+                {
+                    eventItem.DateTime = DateTime.SpecifyKind(eventItem.DateTime, DateTimeKind.Utc);
+                }
+                else if (eventItem.DateTime.Kind == DateTimeKind.Local)
+                {
+                    eventItem.DateTime = eventItem.DateTime.ToUniversalTime();
+                }
+
                 _context.Update(eventItem);
                 await _context.SaveChangesAsync();
             }

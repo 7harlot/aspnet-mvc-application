@@ -30,7 +30,7 @@ public class DashboardController : Controller
                 .ToListAsync(),
             UpcomingEvents = await _context.Events
                 .Include(e => e.Category)
-                .Where(e => e.DateTime > DateTime.Now)
+                .Where(e => e.DateTime > DateTime.UtcNow)
                 .OrderBy(e => e.DateTime)
                 .Take(5)
                 .ToListAsync()

@@ -12,7 +12,10 @@
             </div>
             <div class="card-body">
                 <form asp-action="Create">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div asp-validation-summary="All" class="alert alert-danger" role="alert"></div>
+                    }
 
                     <div class="mb-3">
                         <label asp-for="Title" class="form-label"></label>
@@ -22,7 +25,7 @@
 
                     <div class="mb-3">
                         <label asp-for="CategoryId" class="form-label">Category</label>
-                        <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.CategoryId">
+                        <select asp-for="CategoryId" class="form-select" asp-items="@((SelectList)ViewData["CategoryId"])">
                             <option value="">-- Select Category --</option>
                         </select>
                         <span asp-validation-for="CategoryId" class="text-danger"></span>

@@ -85,7 +85,7 @@ public class PurchasesController : Controller
         // Create purchase
         var purchase = new Purchase
         {
-            PurchaseDate = DateTime.Now,
+            PurchaseDate = DateTime.UtcNow,
             TotalCost = model.Quantity * eventItem.TicketPrice,
             GuestName = model.GuestName,
             GuestEmail = model.GuestEmail
