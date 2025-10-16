@@ -58,6 +58,9 @@ public class PurchasesController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(PurchaseCreateViewModel model)
     {
+        // Remove Event navigation property from ModelState validation
+        ModelState.Remove("Event");
+
         if (!ModelState.IsValid)
         {
             model.Event = await _context.Events

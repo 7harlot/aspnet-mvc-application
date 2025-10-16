@@ -2,7 +2,7 @@
 
 ## 🎉 Your Application is Ready!
 
-Congratulations! Your Virtual Event Ticketing System has been successfully built and is ready to use.
+Your Virtual Event Ticketing System has been successfully built and is ready to use.
 
 ## 🚀 Quick Start
 

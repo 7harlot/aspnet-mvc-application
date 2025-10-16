@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 1 – GBC_Ticketing-Group-61</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 0;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+        }
+        .header-section h1 {
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .header-section h2 {
+            color: #764ba2;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        .course-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .team-member {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .team-member img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #667eea;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .team-member h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        .feature-section {
+            margin-top: 40px;
+        }
+        .feature-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateX(10px);
+        }
+        .feature-card h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .feature-list li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .tech-stack {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .tech-stack h3 {
+            margin-bottom: 20px;
+        }
+        .badge-custom {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            display: inline-block;
+        }
+        .project-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            margin: 10px;
+            min-width: 150px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        .stat-card h2 {
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        .stat-card p {
+            color: #666;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header-section">
+            <h1>Assignment 1 – GBC_Ticketing-Group-61</h1>
+            <h2>Virtual Event Ticketing System</h2>
+            <p class="lead">An ASP.NET Core MVC Web Application for Managing Virtual Events</p>
+        </div>
+
+        <!-- Course Information -->
+        <div class="course-info">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Course Code:</strong> COMP 2139</p>
+                    <p><strong>Section:</strong> Tuesday 11:00 AM</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Assignment:</strong> Assignment 1</p>
+                    <p><strong>Submission Date:</strong> 10.16.25</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Members Section -->
+        <div class="team-section">
+            <h3 class="text-center mb-4" style="color: #667eea;">Team Member - Group 61</h3>
+
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="team-member">
+                        <img src="bm.jpg" alt="Ben Morrison">
+                        <h3>Ben Morrison</h3>
+                        <p><strong>Student ID:</strong> 101572409</p>
+                        <p><strong>Role:</strong> Developer, Student</p>
+                        <p><strong>Email:</strong> ben.morrison@georgebrown.ca</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Overview -->
+        <div class="mt-5">
+            <h3 style="color: #667eea;">Project Overview</h3>
+            <p class="lead">
+                The <strong>Virtual Event Ticketing System</strong> is an ASP.NET Core MVC web application that allows users to browse virtual events,
+                purchase tickets as guests, and manage event listings. The system features a modern, responsive design and integrates with a
+                PostgreSQL database for data persistence.
+            </p>
+        </div>
+
+        <!-- Project Statistics -->
+        <div class="project-stats">
+            <div class="stat-card">
+                <h2>4</h2>
+                <p>Controllers</p>
+            </div>
+            <div class="stat-card">
+                <h2>4</h2>
+                <p>Database Tables</p>
+            </div>
+            <div class="stat-card">
+                <h2>10+</h2>
+                <p>Razor Views</p>
+            </div>
+            <div class="stat-card">
+                <h2>100%</h2>
+                <p>Features Complete</p>
+            </div>
+        </div>
+
+        <!-- Core Features Section -->
+        <div class="feature-section">
+            <h3 class="text-center mb-4" style="color: #667eea;">Core Features Implemented</h3>
+
+            <div class="feature-card">
+                <h4>Event Management</h4>
+                <ul class="feature-list">
+                    <li>Complete CRUD operations (Create, Read, Update, Delete)</li>
+                    <li>Event details: title, category, date/time, ticket price, availability</li>
+                    <li>Color-coded cards for available, low-stock (< 5 tickets), and sold-out events</li>
+                    <li>Category organization (Webinars, Concerts, Workshops, Conferences)</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h4>Search and Filtering</h4>
+                <ul class="feature-list">
+                    <li>Case-insensitive text search by event title or date</li>
+                    <li>Filter by specific categories</li>
+                    <li>Date range filtering (start and end dates)</li>
+                    <li>Availability filter (available vs. sold-out)</li>
+                    <li>Sort by title, date, or price (ascending/descending)</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h4>Guest Ticket Purchasing</h4>
+                <ul class="feature-list">
+                    <li>Browse and select from available events</li>
+                    <li>Choose number of tickets to purchase</li>
+                    <li>Enter guest information (name and email - no registration required)</li>
+                    <li>Purchase confirmation with confirmation number and details</li>
+                    <li>Automatic ticket inventory management</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h4>Dashboard</h4>
+                <ul class="feature-list">
+                    <li>Display total events and categories</li>
+                    <li>Low ticket alerts for events with fewer than 5 tickets</li>
+                    <li>Track sold-out events</li>
+                    <li>Show next 5 upcoming events ordered by date</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h4>Responsive Design</h4>
+                <ul class="feature-list">
+                    <li>Bootstrap 5 for modern, mobile-friendly interface</li>
+                    <li>Responsive navigation with collapsible menu</li>
+                    <li>Card-based layout for clean presentation</li>
+                    <li>Color-coded UI with visual feedback</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h4>Database Integration</h4>
+                <ul class="feature-list">
+                    <li>PostgreSQL database with Entity Framework Core</li>
+                    <li>Four core tables: Categories, Events, Purchases, PurchaseItems</li>
+                    <li>EF Core migrations for schema versioning</li>
+                    <li>Model-level validation with data annotations</li>
+                    <li>Proper foreign key relationships and referential integrity</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Technology Stack -->
+        <div class="tech-stack">
+            <h3>Technology Stack</h3>
+            <div>
+                <span class="badge-custom">ASP.NET Core 8.0 MVC</span>
+                <span class="badge-custom">PostgreSQL</span>
+                <span class="badge-custom">Entity Framework Core</span>
+                <span class="badge-custom">Bootstrap 5</span>
+                <span class="badge-custom">HTML5</span>
+                <span class="badge-custom">CSS3</span>
+                <span class="badge-custom">JavaScript</span>
+                <span class="badge-custom">Git & GitHub</span>
+            </div>
+        </div>
+
+        <!-- Key Highlights -->
+        <div class="mt-5">
+            <h3 style="color: #667eea;">Key Highlights</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="feature-list">
+                        <li>Complete CRUD operations for event management</li>
+                        <li>Guest ticket purchasing without user registration</li>
+                        <li>Advanced search and filtering capabilities</li>
+                        <li>Real-time ticket inventory management</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="feature-list">
+                        <li>Responsive design for desktop and mobile</li>
+                        <li>Proper MVC architecture with separation of concerns</li>
+                        <li>Database migrations for schema management</li>
+                        <li>Data validation at model and controller levels</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- GitHub Repository -->
+        <div class="mt-5 p-4" style="background: #f8f9fa; border-radius: 10px;">
+            <h3 style="color: #667eea;">GitHub Repository</h3>
+            <p><strong>Repository URL:</strong> <a href="https://github.com/7harlot/comp2139-assignment1">Here</a></p>
+            <p><strong>Access Granted:</strong> Professor Sergio Santilli (Sergio.Santilli@georgebrown.ca)</p>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="mt-5 text-center">
+            <h3 style="color: #667eea;">Contact Information</h3>
+            <p>For questions or issues regarding this project, please contact:</p>
+            <p><strong>Ben Morrison</strong></p>
+            <p>Email: ben.morrison@georgebrown.ca | GitHub: github.com/7harlot </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-5 pt-4" style="border-top: 2px solid #eee;">
+            <p style="color: #666;">&copy; 2025 Group 61</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
