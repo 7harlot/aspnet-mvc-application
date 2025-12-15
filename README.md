@@ -1,8 +1,10 @@
 # Virtual Event Ticketing System
 
-## COMP 2139 - Assignment 1
+A comprehensive web application for managing virtual events and ticket sales, built with ASP.NET Core MVC, Entity Framework Core, and PostgreSQL. Features full CRUD operations, advanced search/filtering, real-time inventory management, and responsive Bootstrap 5 UI.
 
-A comprehensive virtual event ticketing system built with ASP.NET Core MVC, enabling users to manage events, browse and purchase tickets, and track guest check-ins.
+## Overview
+
+This event ticketing platform demonstrates enterprise-level web development skills through implementation of a complete MVC architecture with database integration. The system enables event organizers to manage their events while providing a seamless ticket purchasing experience for guests.
 
 ## Features Implemented
 
@@ -244,6 +246,39 @@ The application follows proper MVC design principles:
 - Email confirmations
 - QR code tickets
 - Event check-in system
+
+## Skills Demonstrated
+
+### Backend Development
+- ASP.NET Core MVC architecture and routing
+- Entity Framework Core ORM with Code-First migrations
+- PostgreSQL database design and management
+- LINQ queries for data manipulation
+- Server-side validation and business logic
+
+### Frontend Development
+- Responsive UI with Bootstrap 5
+- Razor view engine and partial views
+- Client-side JavaScript interactions
+- CSS3 animations and transitions
+- Mobile-first responsive design
+
+### Database Design
+- Relational database modeling (One-to-Many, Many-to-Many)
+- Foreign key relationships and constraints
+- Database seeding and initial data
+- Migration management and version control
+
+### Software Engineering
+- MVC design pattern implementation
+- RESTful routing conventions
+- Separation of concerns
+- Code organization and project structure
+- Version control with Git
+
+## Project Context
+
+Developed for **COMP-2139: .NET Technologies** at George Brown College. This project demonstrates full-stack web development skills with the .NET ecosystem, including server-side MVC architecture, ORM usage, and modern web UI development.
 
 ## Team Information
 
